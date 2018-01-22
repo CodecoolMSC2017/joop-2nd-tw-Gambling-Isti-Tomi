@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args){
         int amountOfRounds = Integer.parseInt(args[0]);
         Simulation[] simulation = new Simulation[amountOfRounds];
-        for (int round = 0; i < amountOfRounds; i++) {
+        for (int round = 0; round < amountOfRounds; round++) {
             simulation[round] = generateSimulation(round);
         }
     }
