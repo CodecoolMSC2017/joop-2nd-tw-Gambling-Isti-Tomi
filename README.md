@@ -1,1 +1,1 @@
-# joop 2nd teamwork week
+# joop 2nd teamwork week Cock-fight simulation
