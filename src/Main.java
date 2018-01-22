@@ -9,9 +9,11 @@ public static Simulation generateSimulation(int round){
 }
 
 
+
     
 public static void main(String[] args){
     Main.generateSimulation(Integer.parseInt(args[0]));
+    Logger.log("Test", "message");
     }
 
 }
