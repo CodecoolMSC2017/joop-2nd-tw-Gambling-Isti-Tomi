@@ -15,6 +15,7 @@ public class Simulator {
     public Result run() {
         Cock[] cocks = getRadomCocks(simulation.getCocks());
         Cock winner = getWinner(cocks);
+        System.out.println(winner.name);
 
         Statistics stats = new Statistics(cocks[0].name, cocks[0].speed, cocks[0].weight, cocks[0].height, 
             cocks[1].name, cocks[1].speed, cocks[1].weight, cocks[1].height, winner);
@@ -46,7 +47,7 @@ public class Simulator {
         if (cock2Points > cock1Points) {
             return cocks[1];
         }
-        return getWinner(cocks);
+        return cocks[new Random().nextInt(1)];
     }
 
 }
