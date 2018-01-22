@@ -3,8 +3,13 @@ import java.util.Random;
 
 public class Simulation {
 
+    private int id;
     private Result result;
     private int rndInt;
+
+    public Simulation(int round) {
+        id = round;
+    }
 
     public int testRandom(){
         Random rnd = new Random();

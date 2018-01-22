@@ -3,7 +3,7 @@ package src;
 public class Main {
 
     public static Simulation generateSimulation(int round){
-        Simulation simulation = new Simulation();
+        Simulation simulation = new Simulation(round);
         Simulator simulator = new Simulator(simulation, new Logger());
         simulation.setResult(simulator.run());
         return simulation;
