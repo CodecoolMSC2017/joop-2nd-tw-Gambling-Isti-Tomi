@@ -16,9 +16,9 @@ public class Logger {
         for (Cock cock : cocks) {
             System.out.print(cock.name + " ");
             System.out.print("fights: " + fights.get(cock.name));
-            System.out.println("  victories: " + victories.get(cock.name));
-            
-
+            System.out.print("  victories: " + victories.get(cock.name));
+            double winRate = Double.parseDouble(victories.get(cock.name).toString()) / Double.parseDouble(fights.get(cock.name).toString());
+            System.out.println(" win rate: " + (winRate * 100) + "%");
         }
     }
 }
