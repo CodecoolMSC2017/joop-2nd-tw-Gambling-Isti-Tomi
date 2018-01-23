@@ -12,10 +12,13 @@ public class Logger {
         counter++;
     }
 
-    public void printVictories(Cock[] cocks, HashMap victories) {
+    public void printStats(Cock[] cocks, HashMap fights, HashMap victories) {
         for (Cock cock : cocks) {
             System.out.print(cock.name + " ");
-            System.out.println(victories.get(cock.name));
+            System.out.print("fights: " + fights.get(cock.name));
+            System.out.println("  victories: " + victories.get(cock.name));
+            
+
         }
     }
 }

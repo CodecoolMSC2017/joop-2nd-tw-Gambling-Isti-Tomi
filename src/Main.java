@@ -41,7 +41,8 @@ public class Main {
 
         }
         Logger log = new Logger();
-        log.printVictories(cocks, victories);
+        log.printStats(cocks, fights, victories);
+        
     }
 
     private static Cock[] generateCocks() {
