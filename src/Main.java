@@ -3,16 +3,17 @@ import java.util.HashMap;
 
 public class Main {
 
+    static int amountOfRounds = 0;
+
     public static Simulation generateSimulation(int round, Cock[] cocks){
         Simulation simulation = new Simulation(round, cocks);
-        Simulator simulator = new Simulator(simulation, new Logger());
+        Simulator simulator = new Simulator(simulation, new Logger(round, amountOfRounds));
         simulation.setResult(simulator.run());
         simulation.generateData("./data.csv");
         return simulation;
     }
 
     public static void main(String[] args){
-        int amountOfRounds = 0;
         try {
             amountOfRounds = Integer.parseInt(args[0]);
         } catch (ArrayIndexOutOfBoundsException e) {

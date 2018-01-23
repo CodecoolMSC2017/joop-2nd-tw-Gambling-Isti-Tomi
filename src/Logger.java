@@ -7,8 +7,17 @@ import java.util.HashMap;
 public class Logger {
     static int counter = 1;
 
-    public void progressBar() {
-        System.out.print("#");
+    public Logger() {
+
+    }
+
+    public Logger(int round, int amountOfRounds) {
+        double progress = Double.parseDouble(Integer.toString(round)) / Double.parseDouble(Integer.toString(amountOfRounds));
+        try{
+            System.out.println("\033[H\033[2JProgress: " + (int)(progress * 100) + "%");
+        } catch(ArithmeticException e) {
+            System.out.println("\033[H\033[2JProgress: 0%");
+        }
     }
 
     public void log(String type, String message){
@@ -19,6 +28,7 @@ public class Logger {
     }
 
     public void printStats(Cock[] cocks, HashMap fights, HashMap victories) {
+        System.out.println("\033[H\033[2JProgress: 100%");
         for (Cock cock : cocks) {
             System.out.print(cock.name + " ");
             System.out.print("fights: " + fights.get(cock.name));
