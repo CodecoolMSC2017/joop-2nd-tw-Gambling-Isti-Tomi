@@ -1,4 +1,5 @@
 package src;
+import java.util.HashMap;
 
 public class Main {
 
@@ -16,7 +17,10 @@ public class Main {
         for (int round = 0; round < amountOfRounds; round++) {
             simulations[round] = generateSimulation(round, cocks);
         }
-        
+        HashMap<String,Integer> victories =new HashMap<>();
+        for (Cock item: cocks){
+            victories.put(item.name, 0);
+        } 
     }
 
     private static Cock[] generateCocks() {
