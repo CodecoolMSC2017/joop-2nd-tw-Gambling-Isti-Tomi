@@ -1,4 +1,6 @@
 package src;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -18,7 +20,8 @@ public class Logger {
             System.out.print("fights: " + fights.get(cock.name));
             System.out.print("  victories: " + victories.get(cock.name));
             double winRate = Double.parseDouble(victories.get(cock.name).toString()) / Double.parseDouble(fights.get(cock.name).toString());
-            System.out.println(" win rate: " + (winRate * 100) + "%");
+            NumberFormat formatter = new DecimalFormat("#0.00");
+            System.out.println(" win rate: " + formatter.format(winRate * 100) + "%");
         }
     }
 }
