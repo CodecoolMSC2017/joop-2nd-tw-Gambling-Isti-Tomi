@@ -1,5 +1,6 @@
 package src;
 import java.util.HashMap;
+import java.util.Date;
 
 public class Main {
 
@@ -27,6 +28,10 @@ public class Main {
         }
         Simulation[] simulations = new Simulation[amountOfRounds];
         Cock[] cocks = generateCocks();
+
+        Date now = new Date();
+        now.getTime();
+
         for (int round = 0; round < amountOfRounds; round++) {
             simulations[round] = generateSimulation(round, cocks);
         }
@@ -54,7 +59,7 @@ public class Main {
 
         }
         Logger log = new Logger();
-        log.printStats(cocks, fights, victories);
+        log.printStats(cocks, fights, victories, now);
         
     }
 

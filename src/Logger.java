@@ -27,8 +27,12 @@ public class Logger {
         counter++;
     }
 
-    public void printStats(Cock[] cocks, HashMap fights, HashMap victories) {
+    public void printStats(Cock[] cocks, HashMap fights, HashMap victories, Date begining) {
         System.out.println("\033[H\033[2JProgress: 100%");
+        System.out.println("\nSimulation started: " + begining);
+        Date now = new Date();
+        now.getTime();
+        System.out.println("Simulation ended  : " + now + "\n");
         for (Cock cock : cocks) {
             System.out.print(cock.name + " ");
             System.out.print("fights: " + fights.get(cock.name));
