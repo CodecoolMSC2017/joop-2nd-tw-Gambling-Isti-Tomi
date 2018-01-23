@@ -18,9 +18,16 @@ public class Main {
             simulations[round] = generateSimulation(round, cocks);
         }
         HashMap<String,Integer> victories =new HashMap<>();
-        for (Cock item: cocks){
-            victories.put(item.name, 0);
-        } 
+        for (Cock cock : cocks){
+            victories.put(cock.name, 0);
+        }
+        for (Simulation simulation : simulations) {
+            int temp = victories.get(simulation.getResult().winner.name);
+            temp++;
+            victories.put(simulation.getResult().winner.name, temp);
+        }
+        Logger log = new Logger();
+        log.printVictories(cocks, victories);
     }
 
     private static Cock[] generateCocks() {
