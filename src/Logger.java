@@ -7,6 +7,10 @@ import java.util.HashMap;
 public class Logger {
     static int counter = 1;
 
+    public void progressBar() {
+        System.out.print("#");
+    }
+
     public void log(String type, String message){
         Date now = new Date();
         now.getTime();

@@ -12,7 +12,18 @@ public class Main {
     }
 
     public static void main(String[] args){
-        int amountOfRounds = Integer.parseInt(args[0]);
+        int amountOfRounds = 0;
+        try {
+            amountOfRounds = Integer.parseInt(args[0]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Usage: java src.Main [amount of simulations]\n" +
+                "Note: number cannot be bigger than 1 000 000");
+            System.exit(-1);
+        }
+        if (amountOfRounds > 1000000) {
+            System.out.println("Number cannot be bigger than 1 000 000");
+            System.exit(-1);
+        }
         Simulation[] simulations = new Simulation[amountOfRounds];
         Cock[] cocks = generateCocks();
         for (int round = 0; round < amountOfRounds; round++) {

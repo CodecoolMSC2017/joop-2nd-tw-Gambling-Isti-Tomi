@@ -18,7 +18,7 @@ public class Simulator {
     public Result run() {
         Cock[] cocks = getRadomCocks(simulation.getCocks());
         Cock winner = getWinner(cocks);
-        logger.log("fight over:", cocks[0].name + " vs " + cocks[1].name + ", winner: " + winner.name); // for testing
+        logger.log("fight over:", cocks[0].name + " vs " + cocks[1].name + ", winner: " + winner.name);
 
         Statistics stats = new Statistics(cocks[0].name, cocks[0].speed, cocks[0].weight, cocks[0].height, 
             cocks[1].name, cocks[1].speed, cocks[1].weight, cocks[1].height, winner);
