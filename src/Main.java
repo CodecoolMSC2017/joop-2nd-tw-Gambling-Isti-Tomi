@@ -11,11 +11,12 @@ public class Main {
 
     public static void main(String[] args){
         int amountOfRounds = Integer.parseInt(args[0]);
-        Simulation[] simulation = new Simulation[amountOfRounds];
+        Simulation[] simulations = new Simulation[amountOfRounds];
         Cock[] cocks = generateCocks();
         for (int round = 0; round < amountOfRounds; round++) {
-            simulation[round] = generateSimulation(round, cocks);
+            simulations[round] = generateSimulation(round, cocks);
         }
+        
     }
 
     private static Cock[] generateCocks() {
@@ -23,7 +24,7 @@ public class Main {
         Cock[] cocks = new Cock[amount];
         cocks[0] = new Cock("Mr. Sniffles", 2, 5, 37);
         cocks[1] = new Cock("Womb Raider", 1, 5, 37);
-        cocks[2] = new Cock("Wedding Wrecker", 4, 4, 33);
+        cocks[2] = new Cock("Wedding Wrecker", 4, 4, 34);
         cocks[3] = new Cock("Clam Hammer", 3, 4, 35);
         cocks[4] = new Cock("Muff Marauder", 5, 3, 34);
         return cocks;
