@@ -34,12 +34,12 @@ public class Logger {
         now.getTime();
         System.out.println("Simulation ended  : " + now + "\n");
         for (Cock cock : cocks) {
-            System.out.print(cock.name + " ");
-            System.out.print("fights: " + fights.get(cock.name));
-            System.out.print("  victories: " + victories.get(cock.name));
+            System.out.print(cock.name);
+            System.out.print("\033[92m    fights: " + fights.get(cock.name));
+            System.out.print("\033[93m    victories: " + victories.get(cock.name));
             double winRate = Double.parseDouble(victories.get(cock.name).toString()) / Double.parseDouble(fights.get(cock.name).toString());
             NumberFormat formatter = new DecimalFormat("#0.00");
-            System.out.println(" win rate: " + formatter.format(winRate * 100) + "%");
+            System.out.println("\033[96m    win rate: " + formatter.format(winRate * 100) + "%\033[0m");
         }
     }
 }
