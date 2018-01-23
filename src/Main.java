@@ -17,14 +17,28 @@ public class Main {
         for (int round = 0; round < amountOfRounds; round++) {
             simulations[round] = generateSimulation(round, cocks);
         }
-        HashMap<String,Integer> victories =new HashMap<>();
+        HashMap<String,Integer> victories = new HashMap<>();
+        HashMap<String,Integer> fights = new HashMap<>();
         for (Cock cock : cocks){
             victories.put(cock.name, 0);
+            fights.put(cock.name, 0);
+            
         }
         for (Simulation simulation : simulations) {
-            int temp = victories.get(simulation.getResult().winner.name);
-            temp++;
-            victories.put(simulation.getResult().winner.name, temp);
+            int victory = victories.get(simulation.getResult().winner.name);            
+            victory++;           
+            victories.put(simulation.getResult().winner.name, victory);            
+
+            int allFight = fights.get(simulation.getResult().cock1Name);
+            allFight++;
+            fights.put(simulation.getResult().cock1Name, allFight);
+
+            allFight = fights.get(simulation.getResult().cock2Name);
+            allFight++;
+            fights.put(simulation.getResult().cock2Name, allFight);
+
+
+
         }
         Logger log = new Logger();
         log.printVictories(cocks, victories);

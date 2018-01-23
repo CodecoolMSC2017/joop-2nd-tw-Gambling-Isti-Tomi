@@ -1,16 +1,19 @@
 package src;
 
 import java.util.Random;
+import java.util.HashMap;
 
 public class Simulator {
 
     private Simulation simulation;
     private Logger logger;
+    private static HashMap<String, Integer> fights = new HashMap<>();
     
     Simulator(Simulation simulation, Logger logger) {
         this.simulation = simulation;
         this.logger = logger;
     }
+
 
     public Result run() {
         Cock[] cocks = getRadomCocks(simulation.getCocks());
@@ -21,6 +24,8 @@ public class Simulator {
             cocks[1].name, cocks[1].speed, cocks[1].weight, cocks[1].height, winner);
         return stats;
     }
+
+
 
     private Cock[] getRadomCocks(Cock[] cocks) {
         int rand1 = new Random().nextInt(cocks.length);
