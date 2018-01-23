@@ -49,10 +49,10 @@ public class Main {
         final int amount = 5;
         Cock[] cocks = new Cock[amount];
         cocks[0] = new Cock("Mr. Sniffles", 2, 5, 37);
-        cocks[1] = new Cock("Womb Raider", 1, 5, 37);
+        cocks[1] = new Cock("Womb Raider", 1, 5, 38);
         cocks[2] = new Cock("Wedding Wrecker", 4, 4, 34);
         cocks[3] = new Cock("Clam Hammer", 3, 4, 35);
-        cocks[4] = new Cock("Muff Marauder", 5, 3, 34);
+        cocks[4] = new Cock("Muff Marauder", 5, 3, 33);
         return cocks;
     }
 
