@@ -28,7 +28,7 @@ public class Result {
     @Override
     public String toString() {
         return cock1Name + ";" + cock1Speed + ";" + cock1Weight + ";" + cock1Height + ";" +
-        cock2Name + ";" + cock2Speed + ";" + cock2Weight + ";" + cock2Height + ";" + winner.name;
+        cock2Name + ";" + cock2Speed + ";" + cock2Weight + ";" + cock2Height + ";" + winner.name + "\n";
     }
 
 }
