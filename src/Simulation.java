@@ -6,6 +6,7 @@ public class Simulation {
     private int id;
     private Cock[] cocks;
     private Result result;
+    public static int roundCounter= 0;
 
     public Simulation(int round, Cock[] cocks) {
         this.id = round;
@@ -16,7 +17,12 @@ public class Simulation {
         try {
             File file = new File(filePath);
             FileWriter fileWriter = new FileWriter(file,true);
-            BufferedWriter bufferFileWriter  = new BufferedWriter(fileWriter);
+            if (roundCounter == 0){
+                FileWriter clearFile = new FileWriter(file,false);
+                clearFile.write("");
+                roundCounter++;
+            }
+            BufferedWriter bufferFileWriter  = new BufferedWriter(fileWriter);            
             fileWriter.append(result.toString());
             bufferFileWriter.close();
         }
