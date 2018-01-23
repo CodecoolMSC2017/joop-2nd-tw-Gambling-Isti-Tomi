@@ -8,7 +8,7 @@ public class Logger {
     public void log(String type, String message){
         Date now = new Date();
         now.getTime();
-        System.out.format("\n%d.  %s %s %s\n",counter, now, type, message);
+        System.out.format("\n%d.  %s\n %s %s\n",counter, now, type, message);
         counter++;
     }
 
