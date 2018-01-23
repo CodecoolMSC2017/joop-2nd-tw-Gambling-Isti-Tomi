@@ -14,6 +14,6 @@ public class Cock{
     }
 
     public int getTotalPoints() {
-        return speed + weight + height;
+        return speed * 2 + weight + height;
     }
 }
