@@ -7,6 +7,7 @@ public class Main {
         Simulation simulation = new Simulation(round, cocks);
         Simulator simulator = new Simulator(simulation, new Logger());
         simulation.setResult(simulator.run());
+        simulation.generateData("./data.csv");
         return simulation;
     }
 
