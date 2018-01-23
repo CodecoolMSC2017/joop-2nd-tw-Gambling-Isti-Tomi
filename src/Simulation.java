@@ -13,11 +13,16 @@ public class Simulation {
     }
 
     public void generateData(String filePath){
-        File file = new File(filePath);
-        FileWriter fileWriter = new FileWriter(file,true);
-        BufferedWriter bufferFileWriter  = new BufferedWriter(fileWriter);
-        fileWriter.append(result.toSting());
-        file.close();
+        try {
+            File file = new File(filePath);
+            FileWriter fileWriter = new FileWriter(file,true);
+            BufferedWriter bufferFileWriter  = new BufferedWriter(fileWriter);
+            fileWriter.append(result.toString());
+            bufferFileWriter.close();
+        }
+        catch (IOException e){
+            System.out.println("nem jo kocsog");
+        }
     }
 
     public int getId() {
