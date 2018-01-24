@@ -4,7 +4,15 @@ import java.util.Random;
 import java.util.HashMap;
 
 public class Simulator {
-
+    private static final int NAME = 0;
+    private static final int SPEED = 1;
+    private static final int WEIGTH = 2;
+    private static final int HEIGTH = 3;
+    private static final int STEP_TO_SECOND = 4;
+    private static final int WINNER_NAME = 8;
+    private static final int FIRST_COCK = 0;
+    private static final int SECOND_COCK = 1;
+    
     private Simulation simulation;
     private Logger logger;
     private static HashMap<String, Integer> fights = new HashMap<>();
@@ -20,13 +28,14 @@ public class Simulator {
         String[] sim = checkIfSimulationExists(fileContent, cocks);
         if (sim[0] != null) {
             String[] simu = sim[0].split(";");
-            return new Statistics(simu[0], Integer.parseInt(simu[1]), Integer.parseInt(simu[2]), Integer.parseInt(simu[3]),
-                simu[4], Integer.parseInt(simu[5]), Integer.parseInt(simu[6]), Integer.parseInt(simu[7]), simu[8]);
+            return new Statistics(simu[NAME], Integer.parseInt(simu[SPEED]), Integer.parseInt(simu[WEIGTH]), Integer.parseInt(simu[HEIGTH]),
+                simu[NAME + STEP_TO_SECOND], Integer.parseInt(simu[SPEED + STEP_TO_SECOND]), Integer.parseInt(simu[WEIGTH + STEP_TO_SECOND]),
+                Integer.parseInt(simu[HEIGTH + STEP_TO_SECOND]), simu[WINNER_NAME]);
         }
         Cock winner = getWinner(cocks);
 
-        Statistics stats = new Statistics(cocks[0].name, cocks[0].speed, cocks[0].weight, cocks[0].height, 
-            cocks[1].name, cocks[1].speed, cocks[1].weight, cocks[1].height, winner.name);
+        Statistics stats = new Statistics(cocks[FIRST_COCK].name, cocks[FIRST_COCK].speed, cocks[FIRST_COCK].weight, cocks[FIRST_COCK].height, 
+            cocks[SECOND_COCK].name, cocks[SECOND_COCK].speed, cocks[SECOND_COCK].weight, cocks[SECOND_COCK].height, winner.name);
         return stats;
     }
 
@@ -34,10 +43,10 @@ public class Simulator {
         String[] result = new String[1];
         for (String line : fileContent) {
             String[] lineArray = line.split(";");
-            if (lineArray[0].equals(cocks[0].name) || lineArray[4].equals(cocks[1].name)) {
+            if (lineArray[NAME].equals(cocks[FIRST_COCK].name) && lineArray[NAME + STEP_TO_SECOND].equals(cocks[SECOND_COCK].name)) {
                 result[0] = line;
             }
-            if (lineArray[0].equals(cocks[1].name) || lineArray[4].equals(cocks[0].name)) {
+            if (lineArray[NAME].equals(cocks[SECOND_COCK].name) && lineArray[NAME + STEP_TO_SECOND].equals(cocks[FIRST_COCK].name)) {
                 result[0] = line;
             }            
         }
@@ -64,10 +73,10 @@ public class Simulator {
         cock2Points += new Random().nextInt(1);
 
         if (cock1Points > cock2Points) {
-            return cocks[0];
+            return cocks[FIRST_COCK];
         }
         if (cock2Points > cock1Points) {
-            return cocks[1];
+            return cocks[SECOND_COCK];
         }
         return cocks[new Random().nextInt(1)];
     }
