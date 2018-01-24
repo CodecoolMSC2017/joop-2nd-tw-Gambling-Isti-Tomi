@@ -15,16 +15,34 @@ public class Simulator {
     }
 
 
-    public Result run() {
+    public Result run(String[] fileContent) {
         Cock[] cocks = getRadomCocks(simulation.getCocks());
+        String[] sim = checkIfSimulationExists(fileContent, cocks);
+        if (sim[0] != null) {
+            String[] simu = sim[0].split(";");
+            return new Statistics(simu[0], Integer.parseInt(simu[1]), Integer.parseInt(simu[2]), Integer.parseInt(simu[3]),
+                simu[4], Integer.parseInt(simu[5]), Integer.parseInt(simu[6]), Integer.parseInt(simu[7]), simu[8]);
+        }
         Cock winner = getWinner(cocks);
 
         Statistics stats = new Statistics(cocks[0].name, cocks[0].speed, cocks[0].weight, cocks[0].height, 
-            cocks[1].name, cocks[1].speed, cocks[1].weight, cocks[1].height, winner);
+            cocks[1].name, cocks[1].speed, cocks[1].weight, cocks[1].height, winner.name);
         return stats;
     }
 
-
+    private String[] checkIfSimulationExists(String[] fileContent, Cock[] cocks) {
+        String[] result = new String[1];
+        for (String line : fileContent) {
+            String[] lineArray = line.split(";");
+            if (lineArray[0].equals(cocks[0].name) || lineArray[4].equals(cocks[1].name)) {
+                result[0] = line;
+            }
+            if (lineArray[0].equals(cocks[1].name) || lineArray[4].equals(cocks[0].name)) {
+                result[0] = line;
+            }            
+        }
+        return result;
+    }
 
     private Cock[] getRadomCocks(Cock[] cocks) {
         int rand1 = new Random().nextInt(cocks.length);

@@ -1,20 +1,22 @@
 package src;
-import java.util.HashMap;
-import java.util.Date;
+import java.util.*;
+import java.io.*;
 
 public class Main {
 
+    static String[] fileContent;
     static int amountOfRounds = 0;
 
     public static Simulation generateSimulation(int round, Cock[] cocks){
         Simulation simulation = new Simulation(round, cocks);
         Simulator simulator = new Simulator(simulation, new Logger(round, amountOfRounds));
-        simulation.setResult(simulator.run());
+        simulation.setResult(simulator.run(fileContent));
         simulation.generateData("./data.csv");
         return simulation;
     }
 
     public static void main(String[] args){
+        fileContent = getFileContent("./data.csv");
         try {
             amountOfRounds = Integer.parseInt(args[0]);
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -43,9 +45,9 @@ public class Main {
             
         }
         for (Simulation simulation : simulations) {
-            int victory = victories.get(simulation.getResult().winner.name);            
+            int victory = victories.get(simulation.getResult().winnerName);            
             victory++;           
-            victories.put(simulation.getResult().winner.name, victory);            
+            victories.put(simulation.getResult().winnerName, victory);            
 
             int allFight = fights.get(simulation.getResult().cock1Name);
             allFight++;
@@ -75,6 +77,44 @@ public class Main {
         cocks[6] = new Cock("Kidney Scraper", 3, 3, 30);
         cocks[7] = new Cock("Ho Wrecker", 1, 2, 35);
         return cocks;
+    }
+
+    private static int getFileLength(File file) {
+        Scanner sc;
+        int fileLength = 0;
+
+        try {
+            sc = new Scanner(file);
+
+            while (sc.hasNext()) {
+                fileLength++;
+                sc.nextLine();
+            }
+            sc.close();
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return fileLength;
+    }
+
+    private static String[] getFileContent(String fileName) {
+        int fileLength = getFileLength(new File(fileName));
+        String[] content = new String[fileLength];
+        Scanner read;
+
+        try {
+            read = new Scanner(new File(fileName));
+            int counter = 0;
+
+            while (read.hasNext()) {
+                content[counter] = read.nextLine();
+                counter++;
+            }
+            read.close();
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return content;
     }
 
 }
