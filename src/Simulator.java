@@ -2,6 +2,7 @@ package src;
 
 import java.util.Random;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class Simulator {
     private static final int NAME = 0;
@@ -11,22 +12,23 @@ public class Simulator {
     private static final int STEP_TO_SECOND = 4;
     private static final int WINNER_NAME = 8;
     private static final int FIRST_COCK = 0;
-    private static final int SECOND_COCK = 1;
-    
+    private static final int SECOND_COCK = 1;    
     private Simulation simulation;
     private Logger logger;
     private static HashMap<String, Integer> fights = new HashMap<>();
+    
     
     Simulator(Simulation simulation, Logger logger) {
         this.simulation = simulation;
         this.logger = logger;
     }
+    
 
-
-    public Result run(String[] fileContent) {
+    public Result run(String[] fileContent, boolean useData) {
         Cock[] cocks = getRadomCocks(simulation.getCocks());
-        String[] sim = checkIfSimulationExists(fileContent, cocks);
-        if (sim[0] != null) {
+        String[] sim = new String[1];
+
+        if (sim[0] != null && useData) {
             String[] simu = sim[0].split(";");
             return new Statistics(simu[NAME], Integer.parseInt(simu[SPEED]), Integer.parseInt(simu[WEIGTH]), Integer.parseInt(simu[HEIGTH]),
                 simu[NAME + STEP_TO_SECOND], Integer.parseInt(simu[SPEED + STEP_TO_SECOND]), Integer.parseInt(simu[WEIGTH + STEP_TO_SECOND]),
@@ -38,6 +40,7 @@ public class Simulator {
             cocks[SECOND_COCK].name, cocks[SECOND_COCK].speed, cocks[SECOND_COCK].weight, cocks[SECOND_COCK].height, winner.name);
         return stats;
     }
+
 
     private String[] checkIfSimulationExists(String[] fileContent, Cock[] cocks) {
         String[] result = new String[1];
@@ -53,6 +56,7 @@ public class Simulator {
         return result;
     }
 
+
     private Cock[] getRadomCocks(Cock[] cocks) {
         int rand1 = new Random().nextInt(cocks.length);
         int rand2;
@@ -66,9 +70,10 @@ public class Simulator {
         return new Cock[] {cocks[rand1], cocks[rand2]};
     }
 
+
     private Cock getWinner(Cock[] cocks) {
-        int cock1Points = cocks[0].getTotalPoints();
-        int cock2Points = cocks[1].getTotalPoints();
+        int cock1Points = cocks[FIRST_COCK].getTotalPoints();
+        int cock2Points = cocks[SECOND_COCK].getTotalPoints();
         cock1Points += new Random().nextInt(1);
         cock2Points += new Random().nextInt(1);
 
@@ -80,5 +85,4 @@ public class Simulator {
         }
         return cocks[new Random().nextInt(1)];
     }
-
 }

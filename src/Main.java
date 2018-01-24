@@ -7,12 +7,30 @@ public class Main {
     static String[] fileContent;
     static int amountOfRounds = 0;
 
-    public static Simulation generateSimulation(int round, Cock[] cocks){
+    public static Simulation generateSimulation(int round, Cock[] cocks, boolean useData){
         Simulation simulation = new Simulation(round, cocks);
         Simulator simulator = new Simulator(simulation, new Logger(round, amountOfRounds));
-        simulation.setResult(simulator.run(fileContent));
+        simulation.setResult(simulator.run(fileContent, useData));
         simulation.generateData("./data.csv");
         return simulation;
+    }
+
+    public static boolean getInfo(){
+        Logger message = new Logger();
+        Scanner input = new Scanner(System.in);
+        message.simpleLog("", "Do you want to use the data.csv file? (Y/N)");
+        while (true){   
+            char answer = input.next().toLowerCase().charAt(0);
+            if (answer == 'y'){
+                return true;
+            }
+            else if (answer == 'n'){
+                return false;
+            }
+            else {
+                message.simpleLog("Error: ", "wrong input, try again!");
+            }
+        }
     }
 
     public static void main(String[] args){
@@ -33,9 +51,9 @@ public class Main {
 
         Date now = new Date();
         now.getTime();
-
+        boolean useData = getInfo();
         for (int round = 0; round < amountOfRounds; round++) {
-            simulations[round] = generateSimulation(round, cocks);
+            simulations[round] = generateSimulation(round, cocks, useData);
         }
         HashMap<String,Integer> victories = new HashMap<>();
         HashMap<String,Integer> fights = new HashMap<>();

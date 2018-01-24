@@ -27,6 +27,10 @@ public class Logger {
         counter++;
     }
 
+    public void simpleLog(String type, String message){
+        System.out.format("\n%s %s\n",type, message);
+    }
+
     public void printStats(Cock[] cocks, HashMap fights, HashMap victories, Date begining) {
         System.out.println("\033[H\033[2JProgress: 100%");
         System.out.println("\nSimulation started: " + begining);
