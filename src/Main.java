@@ -3,6 +3,7 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
+    
 
     static String[] fileContent;
     static int amountOfRounds = 0;
@@ -90,11 +91,25 @@ public class Main {
     }
 
     private static Cock[] generateCocks() {
-        final String file = "../source_data/cocks.csv";
-        int amount = getFileLength(File file);
-        Cock[] cocks = new Cock[amount];
-        String[] loadedCocks =
+        final String FILE_COCK = "./source_data/cocks.csv";
+        int amount = getFileLength(new File(FILE_COCK));
+        String[] loadedCocks = getFileContent(FILE_COCK);
+        Cock[] cocks = constructCocks(loadedCocks, amount);
         return cocks;
+    }
+
+    private static Cock[] constructCocks(String[] cocks, int amount){
+        final int NAME = 0;
+        final int SPEED = 1;
+        final int WEIGTH = 2;
+        final int HEIGTH = 3;
+        Cock[] result = new Cock[amount];
+        for (int i = 0; i < cocks.length; i++){
+            String[] temp = cocks[i].split(",");
+            result[i] = new Cock(temp[NAME], Integer.parseInt(temp[SPEED]),
+                                 Integer.parseInt(temp[WEIGTH]), Integer.parseInt(temp[HEIGTH]));            
+        }
+        return result;
     }
 
     private static int getFileLength(File file) {
