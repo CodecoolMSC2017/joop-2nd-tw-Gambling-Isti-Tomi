@@ -18,7 +18,7 @@ public class Main {
     public static boolean getInfo(){
         Logger message = new Logger();
         Scanner input = new Scanner(System.in);
-        message.simpleLog("", "Do you want to use the data.csv file? (Y/N)");
+        message.simpleLog("The program can either read the history from the file or run every single simulation again.\n", "Do you want to use the data.csv file to skip simulating? (Y/N)");
         while (true){   
             char answer = input.next().toLowerCase().charAt(0);
             if (answer == 'y'){
