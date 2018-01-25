@@ -34,7 +34,6 @@ public class Main {
     }
 
     public static void main(String[] args){
-        fileContent = getFileContent("./data.csv");
         try {
             amountOfRounds = Integer.parseInt(args[0]);
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -52,8 +51,15 @@ public class Main {
         Date now = new Date();
         now.getTime();
         boolean useData = getInfo();
-        for (int round = 0; round < amountOfRounds; round++) {
-            simulations[round] = generateSimulation(round, cocks, useData);
+        if (useData) {
+            fileContent = getFileContent("./data.csv");
+            for (int round = 0; round < amountOfRounds; round++) {
+                simulations[round] = generateSimulation(round, cocks, true);
+            }
+        } else {
+            for (int round = 0; round < amountOfRounds; round++) {
+                simulations[round] = generateSimulation(round, cocks, false);
+            }
         }
         HashMap<String,Integer> victories = new HashMap<>();
         HashMap<String,Integer> fights = new HashMap<>();
