@@ -41,6 +41,9 @@ public class Main {
             System.out.println("Usage: java src.Main [amount of simulations]\n" +
                 "Note: number cannot be bigger than 1 000 000");
             System.exit(-1);
+        } catch (NumberFormatException e) {
+            System.out.println("Number cannot be bigger than 1 000 000");
+            System.exit(-1);
         }
         if (amountOfRounds > 1000000) {
             System.out.println("Number cannot be bigger than 1 000 000");
@@ -81,9 +84,6 @@ public class Main {
             allFight = fights.get(simulation.getResult().cock2Name);
             allFight++;
             fights.put(simulation.getResult().cock2Name, allFight);
-
-
-
         }
         Logger log = new Logger();
         log.printStats(cocks, fights, victories, now);
