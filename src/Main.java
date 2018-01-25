@@ -84,16 +84,10 @@ public class Main {
     }
 
     private static Cock[] generateCocks() {
-        final int amount = 8;
+        final String file = "../source_data/cocks.csv";
+        int amount = getFileLength(File file);
         Cock[] cocks = new Cock[amount];
-        cocks[0] = new Cock("Mr. Sniffles", 2, 5, 34);
-        cocks[1] = new Cock("Womb Raider", 1, 5, 37);
-        cocks[2] = new Cock("Wedding Wrecker", 4, 4, 33);
-        cocks[3] = new Cock("Clam Hammer", 3, 4, 35);
-        cocks[4] = new Cock("Muff Marauder", 1, 1, 38);
-        cocks[5] = new Cock("AIDS Baster", 5, 5, 24);
-        cocks[6] = new Cock("Kidney Scraper", 3, 3, 30);
-        cocks[7] = new Cock("Ho Wrecker", 1, 2, 35);
+        String[] loadedCocks =
         return cocks;
     }
 

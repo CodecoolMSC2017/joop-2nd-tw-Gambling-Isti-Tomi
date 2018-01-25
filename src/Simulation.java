@@ -8,7 +8,7 @@ public class Simulation {
     private int id;
     private Cock[] cocks;
     private Result result;
-    public static int roundCounter= 0;
+    public static int roundCounter = 0;
     
 
     public Simulation(int round, Cock[] cocks) {
