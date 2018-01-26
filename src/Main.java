@@ -52,9 +52,9 @@ public class Main {
         Simulation[] simulations = new Simulation[amountOfRounds];
         Cock[] cocks = generateCocks();
 
+        boolean useData = getInfo();
         Date now = new Date();
         now.getTime();
-        boolean useData = getInfo();
         if (useData) {
             fileContent = getFileContent("./data.csv");
             for (int round = 0; round < amountOfRounds; round++) {
